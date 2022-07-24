@@ -10,14 +10,15 @@ public class IsiScanner {
     private char[] content;
     private int state;
     private int position;
+    private int line;
+    private int column;
 
     public IsiScanner(String filename) {
         try {
+            line = 1;
+            column = 0;
             String txtContent;
             txtContent = new String(Files.readAllBytes(Paths.get(filename)), StandardCharsets.UTF_8);
-            System.out.println("DEBUB------------");
-            System.out.println(txtContent);
-            System.out.println("DEBUB------------");
             content = txtContent.toCharArray();
             position = 0;
 
@@ -27,75 +28,75 @@ public class IsiScanner {
     }
 
     public Token nextToken() {
-        Token token;
         char currentChar;
+        Token token;
         StringBuilder term = new StringBuilder();
         if (isEOF()) {
             return null;
         }
         state = 0;
-        while (!isEOF()) {
+        while (true) {
             currentChar = nextChar();
+            column++;
+
             switch (state) {
                 case 0:
                     if (isChar(currentChar)) {
                         term.append(currentChar);
                         state = 1;
                     } else if (isDigit(currentChar)) {
-                        state = 3;
+                        state = 2;
                         term.append(currentChar);
                     } else if (isSpace(currentChar)) {
                         state = 0;
-                    } else if (!isOperator(currentChar)) {
-                        state = 5;
+                    } else if (isOperator(currentChar)) {
+                        term.append(currentChar);
+                        token = new Token();
+                        token.setType(Token.OPERATOR);
+                        token.setText(term.toString());
+                        token.setLine(line);
+                        token.setColumn(column - term.length());
+                        return token;
                     } else {
-                        throw new IsiLexicalException("Error: " + currentChar + " is not a valid character");
+                        throw new IsiLexicalException("Error: \" + currentChar + \" is not a valid character\" at LINE " + line + " and COLUMN " + column);
                     }
                     break;
                 case 1:
                     if (isChar(currentChar) || isDigit(currentChar)) {
-                        term.append(currentChar);
                         state = 1;
-                    } else if (isSpace(currentChar) || isOperator(currentChar)) {
-                        state = 2;
-                    }else {
-                        throw new IsiLexicalException("Error: " + currentChar + " is not a valid character/Malformed identifier");
+                        term.append(currentChar);
+                    } else if (isSpace(currentChar) || isOperator(currentChar) || isEOF(currentChar)) {
+                        if (!isEOF(currentChar))
+                            back();
+                        token = new Token();
+                        token.setType(Token.IDENTIFIER);
+                        token.setText(term.toString());
+                        token.setLine(line);
+                        token.setColumn(column - term.length());
+                        return token;
+                    } else {
+                        throw new IsiLexicalException("Malformed Identifier " + term.toString() + " at LINE " + line + " and COLUMN " + column);
                     }
                     break;
                 case 2:
-                    back();
-                    token = new Token();
-                    token.setType(Token.IDENTIFIER);
-                    token.setText(term.toString());
-                    return token;
-                case 3:
-                    if (isDigit(currentChar)) {
+                    if (isDigit(currentChar) || currentChar == '.') {
+                        state = 2;
                         term.append(currentChar);
-                        state = 3;
-                    } else if(!isChar(currentChar)){
-                        state = 4;
+                    } else if (!isChar(currentChar) || isEOF(currentChar)) {
+                        if (!isEOF(currentChar))
+                            back();
+                        token = new Token();
+                        token.setType(Token.NUMBER);
+                        token.setText(term.toString());
+                        token.setLine(line);
+                        token.setColumn(column - term.length());
+                        return token;
                     } else {
-                        throw new IsiLexicalException(currentChar + " is not a valid number");
+                        throw new IsiLexicalException("Unrecognized Number " + term.toString() + " at LINE " + line + " and COLUMN " + column);
                     }
                     break;
-                case 4:
-                    back();
-                    token = new Token();
-                    token.setType(Token.NUMBER);
-                    token.setText(term.toString());
-                    return token;
-                case 5:
-                    term.append(currentChar);
-                    token = new Token();
-                    token.setType(Token.OPERATOR);
-                    token.setText(term.toString());
-                    return token;
             }
         }
-        token = new Token();
-        token.setType(Token.IDENTIFIER);
-        token.setText(term.toString());
-        return token;
     }
 
 
@@ -108,14 +109,21 @@ public class IsiScanner {
     }
 
     private boolean isOperator(char c) {
-        return c == '>' || c == '<' || c == '=' || c == '!';
+        return c == '>' || c == '<' || c == '=' || c == '!' || c == '+' || c == '-' || c == '*' || c == '/';
     }
 
     private boolean isSpace(char c) {
+        if (c == '\n' || c== '\r') {
+            line++;
+            column=0;
+        }
         return c == ' ' || c == '\n' || c == '\t' || c == '\r';
     }
 
     private char nextChar() {
+        if (isEOF()) {
+            return '\0';
+        }
         return content[position++];
 
     }
@@ -124,8 +132,13 @@ public class IsiScanner {
         return position == content.length;
     }
 
+    private boolean isEOF(char c) {
+        return c == '\0';
+    }
+
     private void back() {
         position--;
+        column--;
     }
 }
 
