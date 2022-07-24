@@ -4,17 +4,22 @@ public class Token {
     public static final int IDENTIFIER = 0;
     public static final int NUMBER = 1;
     public static final int OPERATOR = 2;
-    public static final int DELIMITER = 3;
+    public static final int PONCTUATION = 3;
     public static final int ASSIGN = 4;
+
+    public static final String[] TEXT = {"IDENTIFIER", "NUMBER", "OPERATOR", "PONCTUATION", "ASSIGNMENT"};
 
     private int type;
     private String text;
+    private int line;
+    private int column;
 
     public Token(int type, String text) {
         super();
         this.type = type;
         this.text = text;
     }
+
     public Token() {
         super();
     }
@@ -35,11 +40,25 @@ public class Token {
         this.text = text;
     }
 
+    @Override
     public String toString() {
-        return "Token(" +"type = " + type + ", "+ "text = "  + text + ")";
+        return "Token(" + "type = " + type + ", " + "text = " + text + ")";
     }
 
+    public int getLine() {
+        return line;
+    }
 
+    public void setLine(int line) {
+        this.line = line;
+    }
 
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
 
 }
