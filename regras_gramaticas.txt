@@ -1,0 +1,17 @@
+Dada a gramática G
+
+G = (Vn, Vt, P, S)
+
+Vn = E, T, OP
+Vt = id, num, +, -, *, /
+P =
+
+
+1. E -> E OP T | T
+2. T -> ID | NUM
+3. OP -> + | - | * | /
+
+1a E -> T E'
+1b E'-> OP T E' | ε
+2a T -> ID | NUM
+3a OP -> + | - | * | /
