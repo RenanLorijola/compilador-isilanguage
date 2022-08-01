@@ -1,10 +1,15 @@
 programa
 
-leia(n);
-leia(m);
+
+declara numero a, b;
+declara texto t1;
+
+leia(a);
+leia(b);
+
 a = 1 + 2 * 3 / b;
 
-escreva(n);
-escreva(m);
+escreva(a);
+escreva(b);
 
 fimprog;

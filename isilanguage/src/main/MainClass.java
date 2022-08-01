@@ -1,8 +1,7 @@
 package isilanguage.src.main;
 
 
-import isilanguage.src.exceptions.IsiLexicalException;
-import isilanguage.src.exceptions.IsiSyntaxException;
+import isilanguage.src.exceptions.IsiSemanticException;
 import isilanguage.src.parser.IsiLangLexer;
 import isilanguage.src.parser.IsiLangParser;
 import org.antlr.v4.runtime.CharStreams;
@@ -22,8 +21,12 @@ public class MainClass {
             parser.program();
             System.out.println("Success!");
 
-        } catch (Exception err) {
-            System.out.println("Generic Error: " + err.getMessage());
+        }
+        catch (IsiSemanticException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        catch (Exception err) {
+            System.err.println("Generic Error: " + err.getMessage());
         }
 
     }
