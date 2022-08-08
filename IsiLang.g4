@@ -57,7 +57,8 @@ block : (command)+;
 command: commandread
        | commandwrite
        | commandattrib
-       | commandif;
+       | commandif
+       | commandwhile;
 
 commandread : 'leia' OPENPARENTHESIS
                IDENTIFIER { verifyID(_input.LT(-1).getText()); }
@@ -87,8 +88,18 @@ commandif: 'se' OPENPARENTHESIS
                   (command)+
                   CLOSEBRACKETS
                 )?
-
 ;
+
+commandwhile: 'enquanto' OPENPARENTHESIS
+                IDENTIFIER
+                RELATIONALOPERATOR
+                (IDENTIFIER | NUMBER | TEXT)
+                CLOSEPARENTHESIS
+                OPENBRACKETS
+                (command)+
+                CLOSEBRACKETS;
+
+
 expression: term (OPERATOR term)*;
 
 term: IDENTIFIER { verifyID(_input.LT(-1).getText()); }
