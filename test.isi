@@ -8,8 +8,14 @@ leia(a);
 leia(b);
 
 a = 1 + 2 * 3 / b;
-
+b = 1234;
+t1 = "arroz";
 escreva(a);
 escreva(b);
 
+se (a > b) {
+    escreva(a);
+} senao {
+    escreva(b);
+}
 fimprog;

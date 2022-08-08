@@ -56,7 +56,8 @@ block : (command)+;
 
 command: commandread
        | commandwrite
-       | commandattrib ;
+       | commandattrib
+       | commandif;
 
 commandread : 'leia' OPENPARENTHESIS
                IDENTIFIER { verifyID(_input.LT(-1).getText()); }
@@ -73,10 +74,27 @@ commandattrib: IDENTIFIER{ verifyID(_input.LT(-1).getText()); }
                expression
                SEMICOLON;
 
+commandif: 'se' OPENPARENTHESIS
+                IDENTIFIER
+                RELATIONALOPERATOR
+                (IDENTIFIER | NUMBER | TEXT)
+                CLOSEPARENTHESIS
+                OPENBRACKETS
+                (command)+
+                CLOSEBRACKETS
+                ( 'senao'
+                  OPENBRACKETS
+                  (command)+
+                  CLOSEBRACKETS
+                )?
+
+;
 expression: term (OPERATOR term)*;
 
 term: IDENTIFIER { verifyID(_input.LT(-1).getText()); }
-    | NUMBER;
+    | NUMBER
+    | TEXT
+    ;
 
 type: 'texto'{_type = IsiVariable.TEXT;}
     | 'numero'{_type = IsiVariable.NUMBER;};
@@ -87,6 +105,12 @@ OPENPARENTHESIS	: '('
 CLOSEPARENTHESIS	: ')'
 	;
 
+OPENBRACKETS  : '{'
+     ;
+
+CLOSEBRACKETS  : '}'
+     ;
+
 SEMICOLON	: ';'
 	;
 
@@ -96,13 +120,22 @@ OPERATOR	: '+' | '-' | '*' | '/'
 ATTRIBUTION : '='
 	 ;
 
+RELATIONALOPERATOR    : '>' | '<' | '>=' | '<=' | '==' | '!='
+    ;
+
 IDENTIFIER	: [a-z] ([a-z] | [A-Z] | [0-9])*
 	;
 
 NUMBER	: [0-9]+ ('.' [0-9]+)?
 		;
 
+TEXT: DOUBLEQUOTE [a-zA-Z]+ DOUBLEQUOTE
+    ;
+
 COMMA: ','
+    ;
+
+ DOUBLEQUOTE: '"'
     ;
 
 WHITESPACE	: (' ' | '\t' | '\n' | '\r') -> skip;
