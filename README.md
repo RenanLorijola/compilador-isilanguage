@@ -7,12 +7,12 @@
 <p align="center">
 
 <a href="https://github.com/ViniciussSantos/compilador-isilanguage/commits/main">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ES-UFABC/UFABCplanner">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ViniciussSantos/compilador-isilanguage">
   </a>
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/ViniciussSantos/compilador-isilanguage">
 
-  <img alt="GitHub" src="https://img.shields.io/github/license/ES-UFABC/UFABCplanner">
+  <img alt="GitHub" src="https://img.shields.io/github/license/ViniciussSantos/compilador-isilanguage">
 </p>
 
 <p align="center">
