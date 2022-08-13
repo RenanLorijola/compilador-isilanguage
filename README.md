@@ -51,7 +51,7 @@ Verificar declaração de variávies (não usar variáveis que não foram declar
 Verificar se há variáveis declaradas e não-utilizadas (warning) |
 Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[] Java</li> <li>[] C</li></ul><li>[] Python</li></ul>
 
-O elementos adicionais para o compilador:
+Os elementos adicionais para o compilador:
 Item | Feito
 :------------ | :-------------|
 Nova instrução para Switch/Case (escolha/caso) |
@@ -59,7 +59,7 @@ Mais tipos de dados | :heavy_check_mark:
 Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos) |
 Geração de código para mais de uma linguagem diferente (semântica) |
 
-O elementos extraordinários para o compilador:
+Os elementos extraordinários para o compilador:
 Item | Feito
 :------------ | :-------------|
 Criar um interpretador a partir da AST |
