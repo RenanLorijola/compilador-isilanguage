@@ -6,15 +6,11 @@
 
 <p align="center">
 
-<a href="https://github.com/ES-UFABC/UFABCplanner/commits/main">
+<a href="https://github.com/ViniciussSantos/compilador-isilanguage/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ES-UFABC/UFABCplanner">
   </a>
 
-  <a href="https://github.com/ES-UFABC/UFABCplanner/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/ES-UFABC/UFABCplanner">
-  </a>
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/ES-UFABC/UFABCplanner">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/ViniciussSantos/compilador-isilanguage">
 
   <img alt="GitHub" src="https://img.shields.io/github/license/ES-UFABC/UFABCplanner">
 </p>
