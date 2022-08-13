@@ -3,10 +3,12 @@ programa
 
 declara numero a, b;
 declara texto t1;
+declara booleano b1;
 
 leia(a);
 leia(b);
 
+b1 = Verdadeiro;
 a = 1 + 2 * 3 / b;
 b = 1234;
 t1 = "arroz";
