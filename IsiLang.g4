@@ -78,7 +78,7 @@ commandattrib: IDENTIFIER{ verifyID(_input.LT(-1).getText()); }
 commandif: 'se' OPENPARENTHESIS
                 IDENTIFIER
                 RELATIONALOPERATOR
-                (IDENTIFIER | NUMBER | TEXT)
+                (IDENTIFIER | NUMBER | TEXT | BOOLEAN)
                 CLOSEPARENTHESIS
                 OPENBRACKETS
                 (command)+
@@ -93,7 +93,7 @@ commandif: 'se' OPENPARENTHESIS
 commandwhile: 'enquanto' OPENPARENTHESIS
                 IDENTIFIER
                 RELATIONALOPERATOR
-                (IDENTIFIER | NUMBER | TEXT)
+                (IDENTIFIER | NUMBER | TEXT | BOOLEAN)
                 CLOSEPARENTHESIS
                 OPENBRACKETS
                 (command)+
@@ -105,10 +105,13 @@ expression: term (OPERATOR term)*;
 term: IDENTIFIER { verifyID(_input.LT(-1).getText()); }
     | NUMBER
     | TEXT
+    | BOOLEAN
     ;
 
 type: 'texto'{_type = IsiVariable.TEXT;}
-    | 'numero'{_type = IsiVariable.NUMBER;};
+    | 'numero'{_type = IsiVariable.NUMBER;}
+    | 'booleano'{_type = IsiVariable.BOOLEAN;}
+    ;
 
 OPENPARENTHESIS	: '('
 	;
@@ -140,7 +143,10 @@ IDENTIFIER	: [a-z] ([a-z] | [A-Z] | [0-9])*
 NUMBER	: [0-9]+ ('.' [0-9]+)?
 		;
 
-TEXT: DOUBLEQUOTE [a-zA-Z]+ DOUBLEQUOTE
+TEXT: DOUBLEQUOTE (  [a-z] | [A-Z] | [0-9] | ' ' )+ DOUBLEQUOTE
+    ;
+
+BOOLEAN: 'Verdadeiro' | 'Falso'
     ;
 
 COMMA: ','
