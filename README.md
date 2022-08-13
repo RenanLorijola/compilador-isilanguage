@@ -41,7 +41,7 @@
 
 Os requisitos mínimos para o compilador:
 Item | Feito
-:------------ | :-------------| :-------------| :-------------
+:------------ | :-------------|
 Possuir 2 tipos de dados (pelo menos 1 String) | :heavy_check_mark:
 Possuir a instrução de decisão (if/else) | :heavy_check_mark:
 Pelo menos 1 estrutura de repetição | :heavy_check_mark:
@@ -49,11 +49,11 @@ Verificar Atribuições com compatibilidade de tipos (semântica) |
 Possuir operações de Entrada e Saída | :heavy_check_mark:
 Verificar declaração de variávies (não usar variáveis que não foram declaradas) | :heavy_check_mark:
 Verificar se há variáveis declaradas e não-utilizadas (warning) |
-Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[] Java</li> <li>[] C</li></ul><li>[]Python</li></ul>
+Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[] Java</li> <li>[] C</li></ul><li>[] Python</li></ul>
 
 O elementos adicionais para o compilador:
 Item | Feito
-:------------ | :-------------| :-------------| :-------------
+:------------ | :-------------|
 Nova instrução para Switch/Case (escolha/caso) |
 Mais tipos de dados | :heavy_check_mark:
 Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos) |
@@ -61,7 +61,7 @@ Geração de código para mais de uma linguagem diferente (semântica) |
 
 O elementos extraordinários para o compilador:
 Item | Feito
-:------------ | :-------------| :-------------| :-------------
+:------------ | :-------------|
 Criar um interpretador a partir da AST |
 Criar um editor com Highlights de palavras reservadas (editor Desktop) |
 Criar um editor Web para o código |
