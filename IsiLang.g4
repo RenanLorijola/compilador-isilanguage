@@ -5,12 +5,14 @@ grammar IsiLang;
     import isilanguage.src.datastructures.IsiSymbolTable;
     import isilanguage.src.exceptions.IsiSemanticException;
     import java.util.ArrayList;
+    import java.util.List;
 }
 
 @members{
      private int _type;
      private String _varName;
      private String _varValue;
+     private List<String> _unusedVariables = new ArrayList<String>();
      private IsiSymbol symbol;
      private IsiSymbolTable symbolTable = new IsiSymbolTable();
 
@@ -21,7 +23,11 @@ grammar IsiLang;
      }
 }
 
-program  : 'programa' declaration block 'fimprog;' ;
+program  : 'programa' declaration block 'fimprog' {
+    if(_unusedVariables.size() > 0){
+        System.err.println("Unused variables: "+_unusedVariables);
+    }
+};
 
 declaration: (declarationStatement)+;
 
@@ -31,6 +37,7 @@ declarationStatement : 'declara' type IDENTIFIER  {
 	                  symbol = new IsiVariable(_varName, _type, _varValue);
 	                  if (!symbolTable.exists(_varName)){
 	                     symbolTable.add(symbol);
+	                     _unusedVariables.add(_varName);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -43,6 +50,7 @@ declarationStatement : 'declara' type IDENTIFIER  {
 	                  symbol = new IsiVariable(_varName, _type, _varValue);
 	                  if (!symbolTable.exists(_varName)){
 	                    symbolTable.add(symbol);
+	                    _unusedVariables.add(_varName);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -70,7 +78,9 @@ commandwrite: 'escreva' OPENPARENTHESIS
                         CLOSEPARENTHESIS
                         SEMICOLON;
 
-commandattrib: IDENTIFIER{ verifyID(_input.LT(-1).getText()); }
+commandattrib: IDENTIFIER{ verifyID(_input.LT(-1).getText());
+                           _unusedVariables.remove(_input.LT(-1).getText());
+                         }
                ATTRIBUTION
                expression
                SEMICOLON;
