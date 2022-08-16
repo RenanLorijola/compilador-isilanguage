@@ -44,7 +44,7 @@ Pelo menos 1 estrutura de repetição | :heavy_check_mark:
 Verificar Atribuições com compatibilidade de tipos (semântica) |
 Possuir operações de Entrada e Saída | :heavy_check_mark:
 Verificar declaração de variávies (não usar variáveis que não foram declaradas) | :heavy_check_mark:
-Verificar se há variáveis declaradas e não-utilizadas (warning) |
+Verificar se há variáveis declaradas e não-utilizadas (warning) | :heavy_check_mark:
 Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[] Java</li> <li>[] C</li></ul><li>[] Python</li></ul>
 
 Os elementos adicionais para o compilador:
