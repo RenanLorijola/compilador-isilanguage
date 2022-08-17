@@ -41,7 +41,7 @@ Item | Feito
 Possuir 2 tipos de dados (pelo menos 1 String) | :heavy_check_mark:
 Possuir a instrução de decisão (if/else) | :heavy_check_mark:
 Pelo menos 1 estrutura de repetição | :heavy_check_mark:
-Verificar Atribuições com compatibilidade de tipos (semântica) |
+Verificar Atribuições com compatibilidade de tipos (semântica) | :heavy_check_mark:
 Possuir operações de Entrada e Saída | :heavy_check_mark:
 Verificar declaração de variávies (não usar variáveis que não foram declaradas) | :heavy_check_mark:
 Verificar se há variáveis declaradas e não-utilizadas (warning) | :heavy_check_mark:
