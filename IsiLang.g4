@@ -21,6 +21,12 @@ grammar IsiLang;
      	    throw new IsiSemanticException("Symbol "+id+" not declared");
      	}
      }
+
+     public void verifyType(String id, int type){
+        if (((IsiVariable) symbolTable.get(id)).getType() != type){
+     	    throw new IsiSemanticException("Symbol "+id+" has wrong type");
+     	}
+     }
 }
 
 program  : 'programa' declaration block 'fimprog' {
@@ -78,12 +84,16 @@ commandwrite: 'escreva' OPENPARENTHESIS
                         CLOSEPARENTHESIS
                         SEMICOLON;
 
-commandattrib: IDENTIFIER{ verifyID(_input.LT(-1).getText());
-                           _unusedVariables.remove(_input.LT(-1).getText());
+commandattrib: IDENTIFIER{
+                            _varName = _input.LT(-1).getText();
+                            verifyID(_varName );
+                           _unusedVariables.remove(_varName );
                          }
                ATTRIBUTION
                expression
-               SEMICOLON;
+               SEMICOLON {
+               verifyType(_varName, _type);
+               };
 
 commandif: 'se' OPENPARENTHESIS
                 IDENTIFIER
@@ -112,10 +122,12 @@ commandwhile: 'enquanto' OPENPARENTHESIS
 
 expression: term (OPERATOR term)*;
 
-term: IDENTIFIER { verifyID(_input.LT(-1).getText()); }
-    | NUMBER
-    | TEXT
-    | BOOLEAN
+term: IDENTIFIER { verifyID(_input.LT(-1).getText());
+                  _type = ((IsiVariable) symbolTable.get(_input.LT(-1).getText())).getType();
+                }
+    | NUMBER {_type = IsiVariable.NUMBER;}
+    | TEXT {_type = IsiVariable.TEXT;}
+    | BOOLEAN {_type = IsiVariable.BOOLEAN;}
     ;
 
 type: 'texto'{_type = IsiVariable.TEXT;}

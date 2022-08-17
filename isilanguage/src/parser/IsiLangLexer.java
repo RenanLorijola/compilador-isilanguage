@@ -113,6 +113,12 @@ public class IsiLangLexer extends Lexer {
 	     	}
 	     }
 
+	     public void verifyType(String id, int type){
+	        if (((IsiVariable) symbolTable.get(id)).getType() != type){
+	     	    throw new IsiSemanticException("Symbol "+id+" has wrong type");
+	     	}
+	     }
+
 
 	public IsiLangLexer(CharStream input) {
 		super(input);
