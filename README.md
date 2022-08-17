@@ -18,10 +18,10 @@
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-instalando">requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-requisitos-e-funcionalidades">requisitos e funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
    <a href="#-instalando">Instalando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Licença">Licença</a>  
-  <a href="#-colaboradores">colaboradores</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
+  <a href="#-colaboradores">colaboradores</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 ##  Sobre o projeto
@@ -30,7 +30,7 @@
 
 ##  Tecnologias
 
-- [Java](https://www.java.com/pt-BR/)
+- [Java 18](https://www.java.com/pt-BR/)
 - [ANTLR](https://www.antlr.org/)
 
 ## Requisitos e funcionalidades
@@ -63,12 +63,16 @@ Criar um editor com Highlights de palavras reservadas (editor Desktop) |
 Criar um editor Web para o código |
 Tornar o compilador um Webservice para receber programas e enviar respostas de possíveis erros |
 
-
-## 📝 Licença
+## Instalando
+**baixe o [.jar completo do ANTLR](https://www.antlr.org/download.html), [configure a sua IDE](https://github.com/antlr/antlr4/blob/master/doc/java-target.md) e rode o seguinte comando para verificar se tudo está funcionando**
+```bash
+java -cp .:antlr-4.10.1-complete.jar org.antlr.v4.Tool IsiLang.g4 -package isilanguage.src.parser -o ./isilanguage/src/parser
+```
+##  Licença
 
 Este projeto está licenciado sobre a licença MIT - Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 🤝 Colaboradores
+##  Colaboradores
 
 Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
