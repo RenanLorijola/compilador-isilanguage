@@ -45,7 +45,7 @@ Verificar Atribuições com compatibilidade de tipos (semântica) | :heavy_check
 Possuir operações de Entrada e Saída | :heavy_check_mark:
 Verificar declaração de variávies (não usar variáveis que não foram declaradas) | :heavy_check_mark:
 Verificar se há variáveis declaradas e não-utilizadas (warning) | :heavy_check_mark:
-Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[] Java</li> <li>[] C</li></ul><li>[] Python</li></ul>
+Geração de pelo menos 1 linguagem destino (C/Java/Python) |<ul><li>[:heavy_check_mark:] Java</li> <li>[] C</li></ul><li>[] Python</li></ul>
 
 Os elementos adicionais para o compilador:
 Item | Feito
