@@ -15,7 +15,7 @@ t1 = "arroz";
 escreva(a);
 escreva(b);
 
-v = a ** 2.0;
+v = a ** b;
 
 
 enquanto(a < b) {
