@@ -20,7 +20,8 @@ public class MainClass {
 
             parser.program();
             System.out.println("Success!");
-
+            parser.exibeComandos();
+            parser.generateCode();
         }
         catch (IsiSemanticException e) {
             System.err.println("Error: " + e.getMessage());

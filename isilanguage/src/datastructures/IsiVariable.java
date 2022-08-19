@@ -27,7 +27,22 @@ public class IsiVariable extends IsiSymbol{
     }
 
     @Override
+    public String generateJavaCode() {
+        String varType;
+        if (type == NUMBER){
+            varType = "double";
+        } else if (type == BOOLEAN) {
+            varType = "boolean";
+        } else {
+            varType = "String";
+        }
+        return varType + " " + name + ";";
+    }
+
+    @Override
     public String toString() {
         return "IsiVariable [name=" + name + ", type=" + type + ", value=" + value + "]";
     }
+
+
 }
