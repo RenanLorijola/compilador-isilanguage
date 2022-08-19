@@ -1,5 +1,6 @@
 package isilanguage.src.datastructures;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class IsiSymbolTable {
@@ -21,5 +22,7 @@ public class IsiSymbolTable {
         return symbols.containsKey(name);
     }
 
-
+    public ArrayList<IsiSymbol> getAll() {
+        return new ArrayList<>(symbols.values());
+    }
 }
