@@ -1,7 +1,7 @@
 programa
 
 
-declara numero a, b;
+declara numero a, b, v;
 declara texto t1;
 declara booleano b1;
 
@@ -15,6 +15,9 @@ t1 = "arroz";
 escreva(a);
 escreva(b);
 
+v = a ** 2.0;
+
+
 enquanto(a < b) {
     a = a + 1;
     escreva(a);
@@ -25,4 +28,6 @@ se (a > b) {
 } senao {
     escreva(b);
 }
+
+escreva(v);
 fimprog;
