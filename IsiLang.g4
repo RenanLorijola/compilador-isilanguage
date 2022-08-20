@@ -27,8 +27,10 @@ grammar IsiLang;
     private String _expressionId;
     private String _expressionContent;
     private String _expressionCondition;
+    private String _expressionWhileCondition;
     private ArrayList<AbstractCommand> ifList;
     private ArrayList<AbstractCommand> elseList;
+    private ArrayList<AbstractCommand> whileList;
 
     //Generate code variables end
 
@@ -180,13 +182,26 @@ commandif: 'se' OPENPARENTHESIS
 ;
 
 commandwhile: 'enquanto' OPENPARENTHESIS
-                IDENTIFIER
-                RELATIONALOPERATOR
-                (IDENTIFIER | NUMBER | TEXT | BOOLEAN)
+                (
+                (
+                (IDENTIFIER | NUMBER | TEXT | BOOLEAN) { _expressionWhileCondition = _input.LT(-1).getText(); }
+                RELATIONALOPERATOR { _expressionWhileCondition += _input.LT(-1).getText(); }
+                (IDENTIFIER | NUMBER | TEXT | BOOLEAN) { _expressionWhileCondition += _input.LT(-1).getText(); }
+                )
+                |
+                BOOLEAN { _expressionWhileCondition = _input.LT(-1).getText(); }
+                )
                 CLOSEPARENTHESIS
-                OPENBRACKETS
+                OPENBRACKETS {
+                    currentThread = new ArrayList<AbstractCommand>();
+                    allCommands.push(currentThread);
+                }
                 (command)+
-                CLOSEBRACKETS;
+                CLOSEBRACKETS {
+                    whileList = allCommands.pop();
+                    CommandWhile command = new CommandWhile(_expressionWhileCondition, whileList);
+                    allCommands.peek().add(command);
+                };
 
 
 // expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); } term)* ;
