@@ -1,7 +1,7 @@
 programa
 
 
-declara numero a, b, v;
+declara numero a, b, v, d;
 declara texto t1;
 declara booleano b1;
 
@@ -10,13 +10,12 @@ leia(b);
 
 b1 = true;
 a = 1 + 2 * 3 / b;
-b = 1234;
+b = raiz 3 + 65 * 8 + log 5;
 t1 = "arroz";
 escreva(a);
 escreva(b);
 
 v = a ** b;
-
 
 enquanto(a < b) {
     a = a + 1;

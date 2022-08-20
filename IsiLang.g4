@@ -189,15 +189,14 @@ commandwhile: 'enquanto' OPENPARENTHESIS
                 CLOSEBRACKETS;
 
 
-expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); } term)* ;
-// | (SINGLETERMOPERATOR term)*
-// term (OPERATOR term)* (expression)+
-// SINGLETERMOPERATOR term (OPERATOR expression)+
-
-// log 2 -> SINGLETERMOPERATOR term
-// log 2 + 5 ->
-// log 2 + 5 + 2 + log 4
-
+// expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); } term)* ;
+// expression: term (OPERATOR  expression)? | SINGLETERMOPERATOR term (OPERATOR expression)? ;
+expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            expression)? |
+            SINGLETERMOPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            term (
+            OPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            expression)? ;
 
 term: IDENTIFIER { verifyID(_input.LT(-1).getText());
                   _type = ((IsiVariable) symbolTable.get(_input.LT(-1).getText())).getType();
@@ -222,7 +221,7 @@ type: 'texto'{_type = IsiVariable.TEXT;}
     | 'booleano'{_type = IsiVariable.BOOLEAN;}
     ;
 
-SINGLETERMOPERATOR  :   'raiz' | 'logaritmo' 
+SINGLETERMOPERATOR  :   'raiz' | 'log' 
                     ;
 
 OPENPARENTHESIS	: '('
