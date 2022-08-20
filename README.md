@@ -52,7 +52,7 @@ Item | Feito
 :------------ | :-------------|
 Nova instrução para Switch/Case (escolha/caso) |
 Mais tipos de dados | :heavy_check_mark:
-Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos) |
+Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos) | :heavy_check_mark:
 Geração de código para mais de uma linguagem diferente (semântica) |
 
 Os elementos extraordinários para o compilador:
