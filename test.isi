@@ -22,10 +22,26 @@ enquanto(a < b) {
     escreva(a);
 }
 
-se (a > b) {
-    escreva(a);
-} senao {
-    escreva(b);
+enquanto(a > b){
+    enquanto(true){
+        se (a > b) {
+            se(true) {
+                enquanto(true){
+                    se (a > b) {
+                        se(true) {
+                            leia(a);
+                        }
+                    }
+                    senao {
+                         leia(b);
+                    }
+                }
+                escreva(a);
+            } senao{
+                leia(a);
+            }
+        }
+    }
 }
 
 escreva(v);

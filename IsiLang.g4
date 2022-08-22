@@ -26,8 +26,10 @@ grammar IsiLang;
     private String _commandId;
     private String _expressionId;
     private String _expressionContent;
+    private Stack<String> _expressionConditionStack = new Stack<String>();
     private String _expressionCondition;
     private String _expressionWhileCondition;
+    private Stack<String> _expressionWhileConditionStack = new Stack<String>();
     private ArrayList<AbstractCommand> ifList;
     private ArrayList<AbstractCommand> elseList;
     private ArrayList<AbstractCommand> whileList;
@@ -151,14 +153,18 @@ commandattrib: IDENTIFIER {
 commandif: 'se' OPENPARENTHESIS
                 (
                 (
-                (IDENTIFIER | NUMBER | TEXT | BOOLEAN) { _expressionCondition = _input.LT(-1).getText(); }
+                (IDENTIFIER | NUMBER | TEXT | BOOLEAN) {
+                    _expressionCondition = _input.LT(-1).getText();
+                }
                 RELATIONALOPERATOR { _expressionCondition += _input.LT(-1).getText(); }
                 (IDENTIFIER | NUMBER | TEXT | BOOLEAN) { _expressionCondition += _input.LT(-1).getText(); }
                 )
                 |
                 BOOLEAN { _expressionCondition = _input.LT(-1).getText(); }
                 )
-                CLOSEPARENTHESIS
+                CLOSEPARENTHESIS {
+                    _expressionConditionStack.push(_expressionCondition);
+                }
                 OPENBRACKETS {
                     currentThread = new ArrayList<AbstractCommand>();
                     allCommands.push(currentThread);
@@ -175,10 +181,19 @@ commandif: 'se' OPENPARENTHESIS
                   (command)+
                   CLOSEBRACKETS {
                       elseList = allCommands.pop();
-                      CommandIf command = new CommandIf(_expressionCondition, ifList, elseList);
+                      CommandIf command = new CommandIf(_expressionConditionStack.pop(), ifList, elseList);
                       allCommands.peek().add(command);
                   }
                 )?
+                {
+                      if(elseList == null){
+                          CommandIf command = new CommandIf(_expressionConditionStack.pop(), ifList, new ArrayList<AbstractCommand>());
+                          allCommands.peek().add(command);
+                      }
+                      elseList = null;
+                }
+
+
 ;
 
 commandwhile: 'enquanto' OPENPARENTHESIS
@@ -191,7 +206,9 @@ commandwhile: 'enquanto' OPENPARENTHESIS
                 |
                 BOOLEAN { _expressionWhileCondition = _input.LT(-1).getText(); }
                 )
-                CLOSEPARENTHESIS
+                CLOSEPARENTHESIS {
+                     _expressionWhileConditionStack.push(_expressionWhileCondition);
+                }
                 OPENBRACKETS {
                     currentThread = new ArrayList<AbstractCommand>();
                     allCommands.push(currentThread);
@@ -199,7 +216,7 @@ commandwhile: 'enquanto' OPENPARENTHESIS
                 (command)+
                 CLOSEBRACKETS {
                     whileList = allCommands.pop();
-                    CommandWhile command = new CommandWhile(_expressionWhileCondition, whileList);
+                    CommandWhile command = new CommandWhile(_expressionWhileConditionStack.pop(), whileList);
                     allCommands.peek().add(command);
                 };
 
