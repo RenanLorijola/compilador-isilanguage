@@ -221,12 +221,14 @@ commandwhile: 'enquanto' OPENPARENTHESIS
                 };
 
 
-expression: term (
-                 OPERATOR {
-                      _expressionContent += _input.LT(-1).getText();
-                 }
-                 term
-                 )*;
+// expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); } term)* ;
+// expression: term (OPERATOR  expression)? | SINGLETERMOPERATOR term (OPERATOR expression)? ;
+expression: term (OPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            expression)? |
+            SINGLETERMOPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            term (
+            OPERATOR { _expressionContent += _input.LT(-1).getText(); }
+            expression)? ;
 
 term: IDENTIFIER { verifyID(_input.LT(-1).getText());
                   _type = ((IsiVariable) symbolTable.get(_input.LT(-1).getText())).getType();
@@ -251,6 +253,9 @@ type: 'texto'{_type = IsiVariable.TEXT;}
     | 'booleano'{_type = IsiVariable.BOOLEAN;}
     ;
 
+SINGLETERMOPERATOR  :   'raiz' | 'log' 
+                    ;
+
 OPENPARENTHESIS	: '('
 	;
 
@@ -266,7 +271,7 @@ CLOSEBRACKETS  : '}'
 SEMICOLON	: ';'
 	;
 
-OPERATOR	: '+' | '-' | '*' | '/'
+OPERATOR	: '+' | '-' | '*' | '/' | '**'
 	;
 
 ATTRIBUTION : '='
