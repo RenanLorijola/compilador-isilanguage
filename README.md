@@ -83,8 +83,9 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
         <img src="https://github.com/marinhomateus.png" width="100px;"/><br>
         <sub>
           <b>Mateus Marinho</b>
-        </sub>
+        </sub>        
       </a>
+      <p>11201810516</p>
     </td>
     <td align="center">
       <a href="https://github.com/FusiDaniel">
@@ -93,6 +94,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
           <b> Daniel Fusimoto Pires </b>
         </sub>
       </a>
+      <p>11201921874</p>
     </td>      
       <td align="center">
       <a href="https://github.com/RenanLorijola">
@@ -101,6 +103,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
           <b>Renan Zago Lorijola </b>
         </sub>
       </a>
+      <p>11201810622</p>
     </td> 
       <td align="center">
       <a href="https://github.com/joaoarruda2297">
@@ -109,14 +112,25 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
           <b>João Arruda</b>
         </sub>
       </a>
+      <p>11201812168</p>
     </td> 
       <td align="center">
       <a href="https://github.com/ViniciussSantos">
         <img src="https://github.com/ViniciussSantos.png" width="100px;"/><br>
         <sub>
-          <b>Vinicius Santos </b>
+          <b>Vinicius Santos </b>        
         </sub>
       </a>
+      <p>11201811841</p>
+    </td>
+      <td align="center">
+      <a href="https://github.com/ailtonleite">
+        <img src="https://github.com/ailtonleite.png" width="100px;"/><br>
+        <sub>
+          <b>Ailton Leite </b>
+        </sub>
+      </a>
+      <p>11201811049</p>
     </td> 
         </td> 
 </table>
