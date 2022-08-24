@@ -17,7 +17,7 @@ public class CommandRead extends AbstractCommand {
         String scannerMethod;
         if (var.getType() == IsiVariable.NUMBER){
             scannerMethod = "nextDouble()";
-        } else if (var.getType()  == IsiVariable.TEXT) {
+        } else if (var.getType()  == IsiVariable.BOOLEAN) {
             scannerMethod = "nextBoolean()";
         } else {
             scannerMethod = "nextLine()";
