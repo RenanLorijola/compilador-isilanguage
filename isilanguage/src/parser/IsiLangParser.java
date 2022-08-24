@@ -46,7 +46,7 @@ public class IsiLangParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'programa'", "'fimprog'", "'declara'", "'leia'", "'escreva'", 
+			null, "'programa'", "'fimprog;'", "'declara'", "'leia'", "'escreva'", 
 			"'se'", "'senao'", "'enquanto'", "'texto'", "'numero'", "'booleano'", 
 			null, "'('", "')'", "'{'", "'}'", "';'", null, "'='", null, null, null, 
 			null, null, "','", "'\"'"
