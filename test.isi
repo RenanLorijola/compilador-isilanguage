@@ -1,48 +1,18 @@
 programa
 
-
-declara numero a, b, v, d;
+declara numero a, b;
 declara texto t1;
-declara booleano b1;
+declara booleano bo1;
 
 leia(a);
-leia(b);
+leia(t1);
 
-b1 = true;
-a = 1 + 2 * 3 / b;
-b = raiz 3 + 65 * 8 + log 5;
-t1 = "arroz";
+b = 10;
+a = b + 3;
+t1 = "texto";
+bo1 = true;
 escreva(a);
-escreva(b);
+escreva(t1);
+escreva(bo1);
 
-v = a ** b;
-
-enquanto(a < b) {
-    a = a + 1;
-    escreva(a);
-}
-
-enquanto(a > b){
-    enquanto(true){
-        se (a > b) {
-            se(true) {
-                enquanto(true){
-                    se (a > b) {
-                        se(true) {
-                            leia(a);
-                        }
-                    }
-                    senao {
-                         leia(b);
-                    }
-                }
-                escreva(a);
-            } senao{
-                leia(a);
-            }
-        }
-    }
-}
-
-escreva(v);
 fimprog;

@@ -58,7 +58,7 @@ grammar IsiLang;
     }
 }
 
-program  : 'programa' declaration block 'fimprog' {
+program  : 'programa' declaration block 'fimprog;' {
     program.setVartable(symbolTable);
     program.setCommands(allCommands.pop());
     if(_unusedVariables.size() > 0){
