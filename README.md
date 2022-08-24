@@ -27,6 +27,7 @@
 ##  Sobre o projeto
 
 <p >O projeto é uma implementação do compilador da linguagem isiLanguage utilizando ANTLR4 e Java para a matéria de compiladores na UFABC</p>
+<p>Link do vídeo explicação do projeto: https://www.youtube.com/watch?v=I3IuDRyxNUY</p>
 
 ##  Tecnologias
 
